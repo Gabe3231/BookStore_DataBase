@@ -6,7 +6,7 @@ USE library;
 
 -- Entity
 CREATE TABLE librarian(
-	fname VARCHAR(20),
+    fname VARCHAR(20),
     lname VARCHAR(20),
     number INT,
     phone VARCHAR(20),
@@ -17,7 +17,7 @@ CREATE TABLE librarian(
 
 -- Entity
 CREATE TABLE section(
-	number INT,
+    number INT,
     description VARCHAR(30),
     name VARCHAR(20),
     -- Total Participation
@@ -32,7 +32,7 @@ CREATE TABLE section(
 
 -- Entity
 CREATE TABLE book(
-	title VARCHAR(20),
+    title VARCHAR(20),
     ISBN VARCHAR(20),
     call_number VARCHAR(20),
     year year,
@@ -52,9 +52,9 @@ CREATE TABLE book(
 -- Entity
 -- Has-a relationship to book
 CREATE TABLE book_copy(
-	ID INT,
+    ID INT,
     -- Total Participation
-	ISBN_copy VARCHAR(20) NOT NULL,
+    ISBN_copy VARCHAR(20) NOT NULL,
     PRIMARY KEY (ID),
     FOREIGN KEY (ISBN_copy) REFERENCES book(ISBN)
     ON DELETE CASCADE
@@ -65,7 +65,7 @@ CREATE TABLE book_copy(
 -- Entity
 -- Holds the author of each books info
 CREATE TABLE author(
-	ID INT,
+    ID INT,
     sex VARCHAR(10),
     lname VARCHAR(20),
     fname VARCHAR(20),
@@ -75,7 +75,7 @@ CREATE TABLE author(
 -- Entity
 -- Holds member information
 CREATE TABLE member(
-	membership_number INT,
+    membership_number INT,
     drivers_license_number VARCHAR(20),
     phone_number VARCHAR(20),
     birthday DATE,
@@ -86,7 +86,7 @@ CREATE TABLE member(
 -- Has-a Entity
 -- Holds Address information for Librarian and Members
 CREATE TABLE address(
-	ID INT,
+    ID INT,
     city VARCHAR(20),
     street_number INT,
     state VARCHAR(20),
@@ -105,7 +105,7 @@ CREATE TABLE address(
 
 -- Junction table to represent the relationship from books and authors
 CREATE TABLE writes_books(
-	ISBN VARCHAR(20),
+    ISBN VARCHAR(20),
     ID INT,
     PRIMARY KEY (ISBN, ID),
     FOREIGN KEY (ISBN) REFERENCES book(ISBN)
@@ -120,7 +120,7 @@ CREATE TABLE writes_books(
 -- Relationship
 -- Represents that holds can be placed on books
 CREATE TABLE hold(
-	hold_date DATE,
+    hold_date DATE,
     membership_number INT,
     ID INT,
     PRIMARY KEY (membership_number, ID, hold_date),
@@ -136,7 +136,7 @@ CREATE TABLE hold(
 
 -- Junction table used to record borrowing transcations from librraians, members and book copies
 CREATE TABLE librarian_member_borrow(
-	borrow_date DATE,
+    borrow_date DATE,
     due_date DATE,
     number INT,
     ID INT,
